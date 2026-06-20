@@ -1,0 +1,54 @@
+// ============================================================
+// EXERCISE — Repeat until the input is correct
+// ============================================================
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Loops Exercise 6 </title>
+    </head>
+    <body>
+        <script>
+            let num;
+
+            do {
+            num = prompt("Enter a number greater than 100", 0);
+            } while (num <= 100 && num);
+
+            alert("Correct!"); // runs after loop exits, whether it took 1 try or 10
+        </script>
+
+        <p>/* Q: Write a loop which prompts for a number greater than 100. If the visitor enters another number – ask them to input again.
+
+The loop must ask for a number until either the visitor enters a number greater than 100 or cancels the input/enters an empty line.
+
+Here we can assume that the visitor only inputs numbers. There’s no need to implement a special handling for a non-numeric input in this task.
+*/
+        // Condition breakdown: (num <= 100 && num)
+// num <= 100  → keep asking if number is not big enough
+// && num      → stops if user hits cancel (null) or enters empty string ""
+//               without this, null <= 100 is TRUE → infinite loop
+ 
+// --- WHY do...while AND NOT while? ---
+// do...while guarantees the prompt runs at LEAST once before any check
+// with while, you'd need to call prompt twice (before + inside loop) — messy
+ 
+// --- MY FIRST SOLUTION (works but has issues) ---
+// let answer = +prompt("Enter a number greater than 100", "");
+// if (answer > 100) {
+//   alert("Correct");
+// } else {
+//   while (answer < 100) {                        // ❌ misses exactly 100
+//     answer = +prompt("Enter a number", "");     // duplicate prompt call
+//   }                                             // ❌ +null = 0 → infinite loop on cancel
+// }
+ 
+// Issues with my solution:
+// 1. prompt called twice (before loop + inside) — do...while avoids this
+// 2. +null becomes 0 → cancel causes infinite loop
+// 3. answer < 100 should be answer <= 100 (100 is not greater than 100)
+// 4. Unnecessary if/else — do...while handles first run naturally
+</p>
+    </body>
+</html>
