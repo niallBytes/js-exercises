@@ -1,0 +1,57 @@
+// ============================================================
+// EXERCISE — Output prime numbers
+// ============================================================
+
+/* Q: An integer number greater than 1 is called a prime if it cannot be divided without a remainder by anything except 1 and itself.
+
+In other words, n > 1 is a prime if it can’t be evenly divided by anything except 1 and n.
+
+For example, 5 is a prime, because it cannot be divided without a remainder by 2, 3 and 4.
+
+Write the code which outputs prime numbers in the interval from 2 to n.
+
+For n = 10 the result will be 2,3,5,7.
+
+P.S. The code should work for any n, not be hard-tuned for any fixed value. 
+*/
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Loop - Prime Numbers Exercise</title>
+    </head>
+    <body>
+        <h1>Prime Numbers from 2 to n</h1>
+        <script>
+            let n = 10;
+
+            // Outer loop: i is the number being tested (candidate)
+            // Inner loop: j is the divisor being tried (always resets to 2 for each new i)
+            // If j divides i evenly → not prime, skip to next i (continue nextPrime)
+            // If inner loop ends without finding a divisor → prime, alert it
+
+            nextPrime:
+            for (let i = 2; i <= n; i++) {
+
+                for (let j = 2; j < i; j++) {
+                    if (i % j == 0) continue nextPrime; // divisor found → skip to next i
+                }
+
+                alert(i); // inner loop found no divisor → i is prime
+
+            }
+
+            // FLOW FOR n = 10:
+            // i=2  → j never runs (j<2 false)          → prime → alert(2)
+            // i=3  → j=2: 3%2=1, j ends                → prime → alert(3)
+            // i=4  → j=2: 4%2=0 → continue nextPrime   → skip
+            // i=5  → j=2,3,4: none divide evenly        → prime → alert(5)
+            // i=6  → j=2: 6%2=0 → continue nextPrime   → skip
+            // i=7  → j=2,3,4,5,6: none divide evenly   → prime → alert(7)
+            // i=8  → j=2: 8%2=0 → continue nextPrime   → skip
+            // i=9  → j=3: 9%3=0 → continue nextPrime   → skip
+            // i=10 → j=2: 10%2=0 → continue nextPrime  → skip
+            // Output: 2, 3, 5, 7
+        </script>
+    </body>
+</html>
